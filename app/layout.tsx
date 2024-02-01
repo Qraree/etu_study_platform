@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
-import { Content, Inter } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import './globals.css'
 import { Button, Layout, Menu, MenuProps } from 'antd'
-import { Header } from 'antd/es/layout/layout'
+import { Content, Header } from 'antd/es/layout/layout'
 import Sider from 'antd/es/layout/Sider'
 import { useState } from 'react'
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons'
+import { apolloClient } from '@/graphql/main'
+import { ApolloProvider } from '@apollo/client'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,46 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Layout hasSider={true}>
-        <Sider style={{
-          overflow: 'auto',
-          height: '100vh',
-          position: 'fixed',
-          left: 0,
-          top: 0,
-          bottom: 0,
-        }}
-        >
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={['1']}
-          items={[
-            {
-              key: '1',
-              icon: <UserOutlined />,
-              label: 'nav 1',
-            },
-            {
-              key: '2',
-              icon: <VideoCameraOutlined />,
-              label: 'nav 2',
-            },
-            {
-              key: '3',
-              icon: <UploadOutlined />,
-              label: 'nav 3',
-            },
-          ]}
-        />
-        </Sider>
-          <Layout>
-          <Header style={{ padding: 0, background: 'ffffff' }} />
-          <Content >
             {children}
-          </Content>
-          </Layout>
-        </Layout>
         </body>
     </html>
   )
